@@ -20,7 +20,6 @@ class TipoPokemon(db.Model):
     
     @classmethod
     def obter_ou_criar(cls, descricao):
-        """Buscar tipo existente ou criar novo"""
         tipo = cls.query.filter_by(Descricao=descricao).first()
         if not tipo:
             tipo = cls(Descricao=descricao)

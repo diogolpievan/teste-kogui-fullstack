@@ -32,12 +32,10 @@ class PokemonUsuario(db.Model):
         self.Favorito = Favorito
     
     def adicionar_tipo(self, tipo):
-        """Adicionar um tipo ao Pokémon"""
         if tipo not in self.tipos:
             self.tipos.append(tipo)
     
     def adicionar_tipos(self, lista_tipos):
-        """Adicionar múltiplos tipos ao Pokémon"""
         for tipo in lista_tipos:
             self.adicionar_tipo(tipo)
     

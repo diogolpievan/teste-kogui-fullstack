@@ -2,7 +2,7 @@ from datetime import datetime
 from app.extensions import db, bcrypt
 
 class Usuario(db.Model):
-    __tablename__ = "usuarios"
+    __tablename__ = "Usuario"
 
     IDUsuario = db.Column(db.Integer, primary_key=True)
     Nome = db.Column(db.String(150), nullable=False)
@@ -11,6 +11,13 @@ class Usuario(db.Model):
     Senha = db.Column(db.String(128), nullable=False)
     DtInclusao = db.Column(db.DateTime, default=datetime.now())
     DtAlteracao = db.Column(db.DateTime, default=datetime.now(), onupdate=datetime.now())
+
+    pokemons = db.relationship(
+        'PokemonUsuario', 
+        backref='usuario', 
+        lazy=True,
+        cascade='all, delete-orphan'
+    )
 
     def __init__(self, Nome, Login, Email, Senha):
         self.Nome = Nome
