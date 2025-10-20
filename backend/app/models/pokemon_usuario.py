@@ -12,7 +12,7 @@ class PokemonUsuario(db.Model):
     
     IDPokemonUsuario = db.Column(db.Integer, primary_key=True)
     IDUsuario = db.Column(db.Integer, db.ForeignKey('Usuario.IDUsuario'), nullable=False)
-    Codigo = db.Column(db.String(50), nullable=False)  # ID do Pokémon na PokeAPI
+    Codigo = db.Column(db.String(50), nullable=False)
     ImagemUrl = db.Column(db.String(500))
     Nome = db.Column(db.String(100), nullable=False)
     GrupoBatalha = db.Column(db.Boolean, default=False)
