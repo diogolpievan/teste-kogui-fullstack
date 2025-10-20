@@ -1,0 +1,291 @@
+.pokemon-list-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.filtros-section {
+  margin-bottom: 2rem;
+}
+
+.filtros-section h1 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.filtros {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: end;
+}
+
+.filtro-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filtro-group label {
+  font-weight: 600;
+  color: #34495e;
+}
+
+.filtro-group select,
+.filtro-group input {
+  padding: 0.5rem;
+  border: 2px solid #bdc3c7;
+  border-radius: 5px;
+  font-size: 1rem;
+  min-width: 200px;
+}
+
+.filtro-group select:focus,
+.filtro-group input:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.loading,
+.error,
+.no-results {
+  text-align: center;
+  padding: 2rem;
+  color: #7f8c8d;
+}
+
+.error button {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.pokemon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.pokemon-card {
+  background: white;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  border: 2px solid transparent;
+}
+
+.pokemon-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.pokemon-card.favorito {
+  border-color: #e74c3c;
+}
+
+.pokemon-card.grupo-batalha {
+  border-color: #3498db;
+}
+
+.pokemon-image {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.pokemon-image img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+}
+
+.pokemon-info {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.pokemon-name {
+  color: #2c3e50;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.pokemon-id {
+  color: #7f8c8d;
+  margin: 0 0 1rem 0;
+  font-size: 0.9rem;
+}
+
+.pokemon-types {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.type-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+  text-transform: capitalize;
+}
+
+/* Cores para tipos de Pokémon */
+.tipo-normal {
+  background: #A8A878;
+}
+
+.tipo-fogo {
+  background: #F08030;
+}
+
+.tipo-agua {
+  background: #6890F0;
+}
+
+.tipo-grama {
+  background: #78C850;
+}
+
+.tipo-eletrico {
+  background: #F8D030;
+}
+
+.tipo-gelo {
+  background: #98D8D8;
+}
+
+.tipo-lutador {
+  background: #C03028;
+}
+
+.tipo-veneno {
+  background: #A040A0;
+}
+
+.tipo-terra {
+  background: #E0C068;
+}
+
+.tipo-voador {
+  background: #A890F0;
+}
+
+.tipo-psiquico {
+  background: #F85888;
+}
+
+.tipo-inseto {
+  background: #A8B820;
+}
+
+.tipo-pedra {
+  background: #B8A038;
+}
+
+.tipo-fantasma {
+  background: #705898;
+}
+
+.tipo-dragao {
+  background: #7038F8;
+}
+
+.tipo-sombrio {
+  background: #705848;
+}
+
+.tipo-metal {
+  background: #B8B8D0;
+}
+
+.tipo-fada {
+  background: #EE99AC;
+}
+
+.pokemon-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.btn-favorito,
+.btn-grupo {
+  background: none;
+  border: 2px solid #bdc3c7;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.2s;
+}
+
+.btn-favorito:hover,
+.btn-grupo:hover {
+  transform: scale(1.1);
+}
+
+.btn-favorito.active {
+  background: #e74c3c;
+  border-color: #e74c3c;
+  color: white;
+}
+
+.btn-grupo.active {
+  background: #3498db;
+  border-color: #3498db;
+  color: white;
+}
+
+.status-badges {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: white;
+}
+
+.favorito-badge {
+  background: #e74c3c;
+}
+
+.grupo-badge {
+  background: #3498db;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .filtros {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .filtro-group select,
+  .filtro-group input {
+    min-width: 100%;
+  }
+
+  .pokemon-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+}

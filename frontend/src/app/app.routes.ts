@@ -6,6 +6,34 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () => import('./components/login/login').then((m) => m.LoginComponent),
   },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '**', redirectTo: '/login' },
+  {
+    path: 'home', // ✅ Nova rota home
+    loadComponent: () =>
+      import('./components/pokemon-list/pokemon-list').then((m) => m.PokemonListComponent),
+    canActivate: [authGuard],
+  },
+  {
+    path: 'pokemon',
+    loadComponent: () =>
+      import('./components/pokemon-list/pokemon-list').then((m) => m.PokemonListComponent),
+    canActivate: [authGuard],
+  },
+  // {
+  //   path: 'favoritos',
+  //   loadComponent: () =>
+  //     import('./components/favorites/favorites').then((m) => m.FavoritesComponent),
+  //   canActivate: [authGuard],
+  // },
+  //  {
+  //   path: 'grupo-batalha',
+  //    loadComponent: () =>
+  //      import('./components/battle-team/battle-team').then((m) => m.BattleTeamComponent),
+  //    canActivate: [authGuard],
+  //  },
+  {
+    path: '',
+    redirectTo: '/home', // ✅ Rota vazia vai para home
+    pathMatch: 'full',
+  },
+  { path: '**', redirectTo: '/home' }, // ✅ 404 vai para home
 ];

@@ -32,6 +32,12 @@ export class LoginComponent {
     });
   }
 
+  ngOnInit(): void {
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/home']);
+    }
+  }
+
   onLogin(): void {
     if (this.loginForm.valid) {
       this.isLoading = true;
@@ -39,7 +45,7 @@ export class LoginComponent {
 
       this.authService.login(this.loginForm.value).subscribe({
         next: () => {
-          this.router.navigate(['/pokemon']);
+          this.router.navigate(['/home']);
         },
         error: (error) => {
           this.errorMessage = error.error?.error || 'Erro ao fazer login';
@@ -59,7 +65,7 @@ export class LoginComponent {
 
       this.authService.registrar(this.registerForm.value).subscribe({
         next: () => {
-          this.router.navigate(['/pokemon']);
+          this.router.navigate(['/home']);
         },
         error: (error) => {
           this.errorMessage = error.error?.error || 'Erro ao registrar';
