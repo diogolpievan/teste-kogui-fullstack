@@ -1,10 +1,8 @@
 <div class="pokemon-list-container">
-  <!-- Filtros -->
   <div class="filtros-section">
     <h1>Pokédex</h1>
 
     <div class="filtros">
-      <!-- Filtro por Geração -->
       <div class="filtro-group">
         <label for="geracao">Geração:</label>
         <select id="geracao" [value]="geracaoSelecionada()" (change)="onGeracaoChange($any($event.target).value)">
@@ -14,7 +12,6 @@
         </select>
       </div>
 
-      <!-- Filtro por Nome -->
       <div class="filtro-group">
         <label for="nome">Filtrar por nome:</label>
         <input id="nome" type="text" [value]="nomeFiltro()" (input)="onNomeFiltroChange($any($event.target).value)"
@@ -23,14 +20,12 @@
     </div>
   </div>
 
-  <!-- Loading -->
   @if (carregando()) {
   <div class="loading">
     <p>Carregando Pokémon...</p>
   </div>
   }
 
-  <!-- Erro -->
   @if (erro() && !carregando()) {
   <div class="error">
     <p>{{ erro() }}</p>
@@ -38,22 +33,18 @@
   </div>
   }
 
-  <!-- Lista de Pokémon -->
   @if (!carregando() && !erro()) {
   <div class="pokemon-grid">
     @for (pokemon of pokemons(); track pokemon.id) {
     <div class="pokemon-card" [class.favorito]="pokemon.favorito" [class.grupo-batalha]="pokemon.grupo_batalha">
-      <!-- Imagem do Pokémon -->
-      <div class="pokemon-image">
+      <div class="pokemon-image flex justify-center items-center">
         <img [src]="pokemon.imagem" [alt]="pokemon.nome" loading="lazy">
       </div>
 
-      <!-- Informações -->
       <div class="pokemon-info">
-        <h3 class="pokemon-name">{{ pokemon.nome | titlecase }}</h3>
+        <h3 class="pokemon-name font-bold">{{ pokemon.nome | titlecase }}</h3>
         <p class="pokemon-id">#{{ pokemon.id.toString().padStart(3, '0') }}</p>
 
-        <!-- Tipos -->
         <div class="pokemon-types">
           @for (tipo of pokemon.tipos; track tipo) {
           <span [class]="'type-badge ' + getTipoClass(tipo)">
@@ -63,7 +54,6 @@
         </div>
       </div>
 
-      <!-- Ações -->
       <div class="pokemon-actions">
         <button class="btn-favorito" [class.active]="pokemon.favorito" (click)="toggleFavorito(pokemon)"
           [title]="pokemon.favorito ? 'Remover dos favoritos' : 'Adicionar aos favoritos'">
@@ -76,7 +66,6 @@
         </button>
       </div>
 
-      <!-- Badges de status -->
       <div class="status-badges">
         @if (pokemon.favorito) {
         <span class="badge favorito-badge">Favorito</span>
@@ -89,7 +78,6 @@
     }
   </div>
 
-  <!-- Mensagem sem resultados -->
   @if (pokemons().length === 0) {
   <div class="no-results">
     <p>Nenhum Pokémon encontrado para os filtros selecionados.</p>

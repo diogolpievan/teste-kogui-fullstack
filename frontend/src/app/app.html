@@ -1,24 +1,45 @@
-<div class="app-container">
-  <!-- Header apenas quando logado -->
+<div class="app-container justify-center items-center flex-col">
   @if (showHeader()) {
-  <header class="app-header">
-    <nav class="navbar">
-      <h1>{{ title() }}</h1>
-      <div class="nav-links">
-        <a routerLink="/home" class="nav-link">Home</a>
-        <a routerLink="/favoritos" class="nav-link">Favoritos</a>
-        <a routerLink="/grupo-batalha" class="nav-link">Grupo de Batalha</a>
+  <header class="app-header text-white bg-[#e46212]">
+    <nav class="navbar container flex-col md:flex-row gap-6 justify-between items-center p-4">
+      <div class="flex-col max-w-[500px]">
+        <div class="flex items-center text-center gap-2">
+          <div class="w-[50px] h-[50px] border-[6px] border-white rounded-full "></div>
+          <h1 class="font-bold text-4xl text-center justify-center items-center mt-2">{{title()}}</h1>
+        </div>
+        <div class="mt-6">Explore o mundo dos Pokémon com nossa Pokédex interativa. Descubra informações detalhadas
+          sobre cada
+          criatura.</div>
+      </div>
+      <div class=" flex gap-6 justify-center items-center max-h-[30px]">
+        <a [routerLink]="['/home']" class="nav-link" routerLinkActive="active">Home</a>
+        <a [routerLink]="['/favoritos']" class="nav-link" routerLinkActive="active">Favoritos</a>
+        <a [routerLink]="['/grupo-batalha']" class="nav-link" routerLinkActive="active">Grupo de Batalha</a>
         <div class="user-info">
-          <span>Olá, {{ getCurrentUser()?.Nome }}</span>
-          <button (click)="logout()" class="logout-btn">Sair</button>
+          <button (click)="logout()"
+            class="@apply bg-red-500 text-white rounded-full px-2 hover:bg-[#fbf8f155] hover:text-white transition-colors duration-300 border-2 border-white font-bold">Log
+            Out</button>
         </div>
       </div>
     </nav>
+
   </header>
   }
+  <div id="stats" class="w-full bg-[#6b61c4] text-white font-bold">
+    <div class="container  gap-6">
+      <div class="flex-col text-center items-center justify-center">
+        <h2 class="text-2xl">18</h2>
+        <span>Tipos</span>
+      </div>
 
-  <!-- Conteúdo principal -->
+      <div class="flex-col text-center items-center justify-center">
+        <h2 class="text-2xl">9</h2>
+        <span>Gerações</span>
+      </div>
+    </div>
+  </div>
+
   <main class="main-content">
-    <router-outlet />
+    <router-outlet></router-outlet>
   </main>
 </div>

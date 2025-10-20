@@ -1,1 +1,90 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+/* Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Seus estilos customizados */
+.container {
+  @apply flex max-w-[1200px] mx-auto p-4;
+}
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: #fbf8f1;
+}
+
+.tipo-normal {
+  background: #A8A878;
+}
+
+.tipo-fire {
+  background: #F08030;
+}
+
+.tipo-water {
+  background: #6890F0;
+}
+
+.tipo-grass {
+  background: #78C850;
+}
+
+.tipo-electric {
+  background: #F8D030;
+}
+
+.tipo-ice {
+  background: #98D8D8;
+}
+
+.tipo-fighting {
+  background: #C03028;
+}
+
+.tipo-poison {
+  background: #A040A0;
+}
+
+.tipo-ground {
+  background: #E0C068;
+}
+
+.tipo-flying {
+  background: #A890F0;
+}
+
+.tipo-psychic {
+  background: #F85888;
+}
+
+.tipo-bug {
+  background: #A8B820;
+}
+
+.tipo-rock {
+  background: #B8A038;
+}
+
+.tipo-ghost {
+  background: #705898;
+}
+
+.tipo-dragon {
+  background: #7038F8;
+}
+
+.tipo-dark {
+  background: #705848;
+}
+
+.tipo-steel {
+  background: #B8B8D0;
+}
+
+.tipo-fairy {
+  background: #EE99AC;
+}

@@ -13,13 +13,22 @@ import { Pokemon, Generation } from '../../interfaces/pokemon.interface';
   styleUrl: './pokemon-list.css',
 })
 export class PokemonListComponent implements OnInit {
-  // Signals
   pokemons = signal<Pokemon[]>([]);
-  geracoes = signal<Generation[]>([]);
   carregando = signal(false);
   erro = signal('');
 
-  // Filtros
+  geracoes = signal<Generation[]>([
+    { id: '1', nome: 'Geração 1 - Kanto' },
+    { id: '2', nome: 'Geração 2 - Johto' },
+    { id: '3', nome: 'Geração 3 - Hoenn' },
+    { id: '4', nome: 'Geração 4 - Sinnoh' },
+    { id: '5', nome: 'Geração 5 - Unova' },
+    { id: '6', nome: 'Geração 6 - Kalos' },
+    { id: '7', nome: 'Geração 7 - Alola' },
+    { id: '8', nome: 'Geração 8 - Galar' },
+    { id: '9', nome: 'Geração 9 - Paldea' },
+  ]);
+
   geracaoSelecionada = signal('1');
   nomeFiltro = signal('');
   limite = signal(20);

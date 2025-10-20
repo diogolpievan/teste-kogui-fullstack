@@ -21,7 +21,7 @@
   <div class="favorites-grid">
     @for (pokemon of favoritos(); track pokemon.IDPokemonUsuario) {
     <div class="pokemon-card">
-      <div class="pokemon-image">
+      <div class="pokemon-image flex justify-center items-center">
         <img [src]="pokemon.ImagemUrl" [alt]="pokemon.Nome" loading="lazy">
       </div>
 

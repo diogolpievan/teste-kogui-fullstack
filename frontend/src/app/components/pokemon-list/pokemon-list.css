@@ -138,79 +138,6 @@
   text-transform: capitalize;
 }
 
-/* Cores para tipos de Pokémon */
-.tipo-normal {
-  background: #A8A878;
-}
-
-.tipo-fogo {
-  background: #F08030;
-}
-
-.tipo-agua {
-  background: #6890F0;
-}
-
-.tipo-grama {
-  background: #78C850;
-}
-
-.tipo-eletrico {
-  background: #F8D030;
-}
-
-.tipo-gelo {
-  background: #98D8D8;
-}
-
-.tipo-lutador {
-  background: #C03028;
-}
-
-.tipo-veneno {
-  background: #A040A0;
-}
-
-.tipo-terra {
-  background: #E0C068;
-}
-
-.tipo-voador {
-  background: #A890F0;
-}
-
-.tipo-psiquico {
-  background: #F85888;
-}
-
-.tipo-inseto {
-  background: #A8B820;
-}
-
-.tipo-pedra {
-  background: #B8A038;
-}
-
-.tipo-fantasma {
-  background: #705898;
-}
-
-.tipo-dragao {
-  background: #7038F8;
-}
-
-.tipo-sombrio {
-  background: #705848;
-}
-
-.tipo-metal {
-  background: #B8B8D0;
-}
-
-.tipo-fada {
-  background: #EE99AC;
-}
-
 .pokemon-actions {
   display: flex;
   justify-content: center;
@@ -272,7 +199,6 @@
   background: #3498db;
 }
 
-/* Responsivo */
 @media (max-width: 768px) {
   .filtros {
     flex-direction: column;
