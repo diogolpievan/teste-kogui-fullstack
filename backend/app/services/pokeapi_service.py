@@ -30,6 +30,18 @@ class PokeAPIService:
         return cls._fazer_requisicao(f"pokemon/{pokemon_id}")
     
     @classmethod
+    def obter_geracao_pokemon(cls, pokemon_id):
+        """Obter geração de um Pokémon através da espécie"""
+        dados_especie = cls.obter_pokemon_especie(pokemon_id)
+        
+        if dados_especie and 'generation' in dados_especie:
+            geracao_url = dados_especie['generation']['url']
+            geracao_nome = geracao_url.split('/')[-2]
+            return geracao_nome
+        
+        return None
+    
+    @classmethod
     def processar_tipos_pokemon(cls, tipos_data):
         from app.models.tipo_pokemon import TipoPokemon
         
