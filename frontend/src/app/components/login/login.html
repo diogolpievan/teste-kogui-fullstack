@@ -1,1 +1,81 @@
-<p>login works!</p>
+<div class="login-container">
+  <div class="login-card">
+    <h2>{{ isLoginMode ? 'Login' : 'Registrar' }}</h2>
+
+    <form [formGroup]="isLoginMode ? loginForm : registerForm" (ngSubmit)="isLoginMode ? onLogin() : onRegister()">
+      <!-- Campos de Registro -->
+      @if (!isLoginMode) {
+      <div class="form-group">
+        <label for="nome">Nome Completo</label>
+        <input id="nome" type="text" formControlName="Nome" placeholder="Digite seu nome"
+          [class.error]="registerForm.get('Nome')?.invalid && registerForm.get('Nome')?.touched">
+        @if (registerForm.get('Nome')?.invalid && registerForm.get('Nome')?.touched) {
+        <div class="error-message">
+          Nome é obrigatório
+        </div>
+        }
+      </div>
+      }
+
+      <!-- Campos comuns -->
+      <div class="form-group">
+        <label for="login">Login</label>
+        <input id="login" type="text" [formControlName]="isLoginMode ? 'login' : 'Login'" placeholder="Digite seu login"
+          [class.error]="(isLoginMode ? loginForm.get('login') : registerForm.get('Login'))?.invalid && (isLoginMode ? loginForm.get('login') : registerForm.get('Login'))?.touched">
+        @if ((isLoginMode ? loginForm.get('login') : registerForm.get('Login'))?.invalid && (isLoginMode ?
+        loginForm.get('login') : registerForm.get('Login'))?.touched) {
+        <div class="error-message">
+          Login é obrigatório
+        </div>
+        }
+      </div>
+
+      <!-- Email apenas no registro -->
+      @if (!isLoginMode) {
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="Email" placeholder="Digite seu email"
+          [class.error]="registerForm.get('Email')?.invalid && registerForm.get('Email')?.touched">
+        @if (registerForm.get('Email')?.invalid && registerForm.get('Email')?.touched) {
+        <div class="error-message">
+          Email é obrigatório e deve ser válido
+        </div>
+        }
+      </div>
+      }
+
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <input id="senha" type="password" [formControlName]="isLoginMode ? 'senha' : 'Senha'"
+          placeholder="Digite sua senha"
+          [class.error]="(isLoginMode ? loginForm.get('senha') : registerForm.get('Senha'))?.invalid && (isLoginMode ? loginForm.get('senha') : registerForm.get('Senha'))?.touched">
+        @if ((isLoginMode ? loginForm.get('senha') : registerForm.get('Senha'))?.invalid && (isLoginMode ?
+        loginForm.get('senha') : registerForm.get('Senha'))?.touched) {
+        <div class="error-message">
+          Senha é obrigatória (mínimo 3 caracteres)
+        </div>
+        }
+      </div>
+
+      <!-- Mensagem de erro -->
+      @if (errorMessage) {
+      <div class="error-message global-error">
+        {{ errorMessage }}
+      </div>
+      }
+
+      <!-- Botão de submit -->
+      <button type="submit" class="submit-btn"
+        [disabled]="(isLoginMode ? loginForm.invalid : registerForm.invalid) || isLoading">
+        {{ isLoading ? 'Carregando...' : (isLoginMode ? 'Entrar' : 'Registrar') }}
+      </button>
+    </form>
+
+    <!-- Toggle entre Login/Registro -->
+    <div class="toggle-mode">
+      <button type="button" class="toggle-btn" (click)="toggleMode()">
+        {{ isLoginMode ? 'Não tem conta? Registrar' : 'Já tem conta? Fazer Login' }}
+      </button>
+    </div>
+  </div>
+</div>
