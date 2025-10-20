@@ -23,7 +23,7 @@ def create_app():
     
     from app.routes.auth import auth_bp
     
-    app.register_blueprint(auth_bp, url_prefix='/api/usuarios')
+    app.register_blueprint(auth_bp, url_prefix='/api/auth')
     
     with app.app_context():
         db.create_all()
