@@ -1,1 +1,94 @@
-<p>battle-team works!</p>
+<div class="battle-team-container">
+  <div class="header-section">
+    <h1>Meu Grupo de Batalha</h1>
+    <p>Gerencie seu time de até 6 Pokémon para batalhar</p>
+
+    @let stats = calcularEstatisticasTime();
+    <div class="team-stats">
+      <div class="stat-item">
+        <span class="stat-number">{{ stats.total }}/{{ stats.max }}</span>
+        <span class="stat-label">Pokémon no Time</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">{{ stats.max - stats.total }}</span>
+        <span class="stat-label">Vagas Restantes</span>
+      </div>
+    </div>
+  </div>
+
+  @if (carregando()) {
+  <div class="loading">
+    <p>Carregando seu grupo de batalha...</p>
+  </div>
+  }
+
+  @if (erro() && !carregando()) {
+  <div class="error">
+    <p>{{ erro() }}</p>
+    <button (click)="carregarGrupoBatalha()">Tentar Novamente</button>
+  </div>
+  }
+
+  @if (!carregando() && !erro()) {
+  <div class="battle-team-grid">
+    @for (pokemon of grupoBatalha(); track pokemon.IDPokemonUsuario; let i = $index) {
+    <div class="team-member">
+      <div class="member-number">
+        #{{ i + 1 }}
+      </div>
+
+      <div class="pokemon-card">
+        <div class="pokemon-image">
+          <img [src]="pokemon.ImagemUrl" [alt]="pokemon.Nome" loading="lazy">
+        </div>
+
+        <div class="pokemon-info">
+          <h3 class="pokemon-name">{{ pokemon.Nome }}</h3>
+          <p class="pokemon-id">#{{ pokemon.Codigo.padStart(3, '0') }}</p>
+
+          <div class="pokemon-types">
+            @for (tipo of pokemon.Tipos; track tipo.IDTipoPokemon) {
+            <span [class]="'type-badge ' + getTipoClass(tipo.Descricao)">
+              {{ tipo.Descricao }}
+            </span>
+            }
+          </div>
+        </div>
+
+        <div class="pokemon-actions">
+          <button class="btn-remover-grupo" (click)="removerDoGrupo(pokemon)" title="Remover do grupo de batalha">
+            🗑️ Remover
+          </button>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+
+  @if (grupoBatalha().length < 6) { <div class="empty-slots">
+    <h3>Vagas Disponíveis</h3>
+    <div class="empty-slots-grid">
+      @for (slot of [].constructor(6 - grupoBatalha().length); track $index) {
+      <div class="empty-slot">
+        <div class="slot-content">
+          <span class="slot-plus">+</span>
+          <p>Vaga Disponível</p>
+          <a routerLink="/home" class="btn-slot">Adicionar Pokémon</a>
+        </div>
+      </div>
+      }
+    </div>
+</div>
+}
+
+@if (grupoBatalha().length === 0) {
+<div class="empty-team">
+  <div class="empty-state">
+    <h3>Time de Batalha Vazio</h3>
+    <p>Adicione até 6 Pokémon ao seu grupo de batalha para começar!</p>
+    <a routerLink="/home" class="btn-primary">Explorar Pokémon</a>
+  </div>
+</div>
+}
+}
+</div>

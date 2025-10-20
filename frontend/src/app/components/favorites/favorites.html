@@ -4,14 +4,12 @@
     <p>Gerencie seus Pokémon favoritos aqui</p>
   </div>
 
-  <!-- Loading -->
   @if (carregando()) {
   <div class="loading">
     <p>Carregando seus favoritos...</p>
   </div>
   }
 
-  <!-- Erro -->
   @if (erro() && !carregando()) {
   <div class="error">
     <p>{{ erro() }}</p>
@@ -19,22 +17,18 @@
   </div>
   }
 
-  <!-- Lista de Favoritos -->
   @if (!carregando() && !erro()) {
   <div class="favorites-grid">
     @for (pokemon of favoritos(); track pokemon.IDPokemonUsuario) {
     <div class="pokemon-card">
-      <!-- Imagem do Pokémon -->
       <div class="pokemon-image">
         <img [src]="pokemon.ImagemUrl" [alt]="pokemon.Nome" loading="lazy">
       </div>
 
-      <!-- Informações -->
       <div class="pokemon-info">
         <h3 class="pokemon-name">{{ pokemon.Nome }}</h3>
         <p class="pokemon-id">#{{ pokemon.Codigo.padStart(3, '0') }}</p>
 
-        <!-- Tipos -->
         <div class="pokemon-types">
           @for (tipo of pokemon.Tipos; track tipo.IDTipoPokemon) {
           <span [class]="'type-badge ' + getTipoClass(tipo.Descricao)">
@@ -44,7 +38,6 @@
         </div>
       </div>
 
-      <!-- Ações -->
       <div class="pokemon-actions">
         <button class="btn-remover-favorito" (click)="removerFavorito(pokemon)" title="Remover dos favoritos">
           ❌ Remover
@@ -63,7 +56,6 @@
     }
   </div>
 
-  <!-- Mensagem sem favoritos -->
   @if (favoritos().length === 0) {
   <div class="no-favorites">
     <div class="empty-state">
