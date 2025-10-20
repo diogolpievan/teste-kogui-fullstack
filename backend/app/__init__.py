@@ -22,10 +22,18 @@ def create_app():
     CORS(app)
     
     from app.routes.auth import auth_bp
-    
+    from app.routes.pokemon import pokemon_bp
+
+    app.register_blueprint(pokemon_bp, url_prefix='/api/pokemon')
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     
     with app.app_context():
+        from app.models.tipo_pokemon import TipoPokemon
+        
+        from app.models.usuario import Usuario
+        
+        from app.models.pokemon_usuario import PokemonUsuario, pokemon_tipos
+        
         db.create_all()
     
     return app
