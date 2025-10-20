@@ -31,7 +31,7 @@ def register():
         db.session.add(new_user)
         db.session.commit()
         
-        access_token = create_access_token(identity=new_user.IDUsuario)
+        access_token = create_access_token(identity=str(new_user.IDUsuario))
         
         return jsonify({
             'message': 'Usuário criado com sucesso',
@@ -59,7 +59,7 @@ def login():
         ).first()
         
         if usuario and usuario.check_password(senha):
-            access_token = create_access_token(identity=usuario.IDUsuario)
+            access_token = create_access_token(identity=str(usuario.IDUsuario))
             
             return jsonify({
                 'access_token': access_token,
