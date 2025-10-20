@@ -21,9 +21,9 @@ def create_app():
     bcrypt.init_app(app)
     CORS(app)
     
-    from app.routes.usuarios import usuarios_bp
+    from app.routes.auth import auth_bp
     
-    app.register_blueprint(usuarios_bp, url_prefix='/api/usuarios')
+    app.register_blueprint(auth_bp, url_prefix='/api/usuarios')
     
     with app.app_context():
         db.create_all()
