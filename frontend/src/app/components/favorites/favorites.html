@@ -1,0 +1,77 @@
+<div class="favorites-container">
+  <div class="header-section">
+    <h1>Meus Pokémon Favoritos</h1>
+    <p>Gerencie seus Pokémon favoritos aqui</p>
+  </div>
+
+  <!-- Loading -->
+  @if (carregando()) {
+  <div class="loading">
+    <p>Carregando seus favoritos...</p>
+  </div>
+  }
+
+  <!-- Erro -->
+  @if (erro() && !carregando()) {
+  <div class="error">
+    <p>{{ erro() }}</p>
+    <button (click)="carregarFavoritos()">Tentar Novamente</button>
+  </div>
+  }
+
+  <!-- Lista de Favoritos -->
+  @if (!carregando() && !erro()) {
+  <div class="favorites-grid">
+    @for (pokemon of favoritos(); track pokemon.IDPokemonUsuario) {
+    <div class="pokemon-card">
+      <!-- Imagem do Pokémon -->
+      <div class="pokemon-image">
+        <img [src]="pokemon.ImagemUrl" [alt]="pokemon.Nome" loading="lazy">
+      </div>
+
+      <!-- Informações -->
+      <div class="pokemon-info">
+        <h3 class="pokemon-name">{{ pokemon.Nome }}</h3>
+        <p class="pokemon-id">#{{ pokemon.Codigo.padStart(3, '0') }}</p>
+
+        <!-- Tipos -->
+        <div class="pokemon-types">
+          @for (tipo of pokemon.Tipos; track tipo.IDTipoPokemon) {
+          <span [class]="'type-badge ' + getTipoClass(tipo.Descricao)">
+            {{ tipo.Descricao }}
+          </span>
+          }
+        </div>
+      </div>
+
+      <!-- Ações -->
+      <div class="pokemon-actions">
+        <button class="btn-remover-favorito" (click)="removerFavorito(pokemon)" title="Remover dos favoritos">
+          ❌ Remover
+        </button>
+
+        @if (!pokemon.GrupoBatalha) {
+        <button class="btn-adicionar-grupo" (click)="adicionarGrupoBatalha(pokemon)"
+          title="Adicionar ao grupo de batalha">
+          ⚔️ Grupo
+        </button>
+        } @else {
+        <span class="no-grupo-badge">No Grupo</span>
+        }
+      </div>
+    </div>
+    }
+  </div>
+
+  <!-- Mensagem sem favoritos -->
+  @if (favoritos().length === 0) {
+  <div class="no-favorites">
+    <div class="empty-state">
+      <h3>Nenhum Pokémon favorito</h3>
+      <p>Você ainda não adicionou nenhum Pokémon aos favoritos.</p>
+      <a routerLink="/home" class="btn-primary">Explorar Pokémon</a>
+    </div>
+  </div>
+  }
+  }
+</div>

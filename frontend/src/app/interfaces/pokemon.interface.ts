@@ -22,3 +22,19 @@ export interface Generation {
   id: string;
   nome: string;
 }
+
+export interface PokemonUsuario {
+  IDPokemonUsuario: number;
+  IDUsuario: number;
+  Codigo: string;
+  ImagemUrl: string;
+  Nome: string;
+  GrupoBatalha: boolean;
+  Favorito: boolean;
+  Tipos: TipoPokemon[];
+}
+
+export interface TipoPokemon {
+  IDTipoPokemon: number;
+  Descricao: string;
+}
