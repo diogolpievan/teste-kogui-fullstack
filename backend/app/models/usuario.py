@@ -12,6 +12,12 @@ class Usuario(db.Model):
     DtInclusao = db.Column(db.DateTime, default=datetime.now())
     DtAlteracao = db.Column(db.DateTime, default=datetime.now(), onupdate=datetime.now())
 
+    def __init__(self, Nome, Login, Email, Senha):
+        self.Nome = Nome
+        self.Login = Login
+        self.Email = Email
+        self.set_password(Senha)
+
     def set_password(self, password):
         self.Senha = bcrypt.generate_password_hash(password).decode('utf-8')
 
